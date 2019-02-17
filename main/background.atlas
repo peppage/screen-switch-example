@@ -1,0 +1,15 @@
+images {
+  image: "/assets/forest.jpg"
+}
+images {
+  image: "/assets/japan.jpg"
+}
+images {
+  image: "/assets/lake.jpg"
+}
+images {
+  image: "/assets/mountain.jpg"
+}
+margin: 0
+extrude_borders: 0
+inner_padding: 0

@@ -1,0 +1,51 @@
+local backgrounds = {"lake", "japan", "forest", "mountain"}
+local total_backgrounds = 4
+
+function init(self)
+	-- Required so input will be forwarded to GO
+	msg.post(".", "acquire_input_focus")
+	self.current_background = 1
+	self.current_sprite = hash(backgrounds[self.current_background])
+end
+
+function update(self, dt)
+	local sprite = hash(backgrounds[self.current_background])
+	if sprite ~= self.current_sprite then
+		msg.post("#sprite", "play_animation", {id = sprite})
+		self.current_sprite = sprite
+	end
+end
+
+function on_message(self, message_id, message, sender)
+	if message_id == hash("lake") then
+		self.current_background = 1
+	elseif message_id == hash("japan") then
+		self.current_background = 2
+	elseif message_id == hash("forest") then
+		self.current_background = 3
+	elseif message_id == hash("mountain") then
+		self.current_background = 4
+	end
+end
+
+function on_input(self, action_id, action)
+	local temp_background = 1
+	
+	if action_id == hash("left") then
+		temp_background = self.current_background - 1
+		print("left")
+	elseif action_id == hash("right") then
+		temp_background = self.current_background + 1
+		print("right")
+	else
+		return
+	end
+
+	if temp_background < 1 then
+		temp_background = total_backgrounds
+	elseif temp_background >= total_backgrounds then
+		temp_background = 1
+	end
+
+	self.current_background = temp_background
+end

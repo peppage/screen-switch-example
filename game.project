@@ -1,0 +1,14 @@
+[bootstrap]
+main_collection = /main/main.collectionc
+
+[script]
+shared_state = 1
+
+[display]
+width = 1920
+height = 1080
+
+[project]
+title = Screen-Switch-Example
+dependencies = https://github.com/britzl/gooey/archive/master.zip
+
